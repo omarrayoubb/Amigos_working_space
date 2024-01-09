@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="617.0" prefWidth="1114.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.co_working_space1.Users">
+   <children>
+      <AnchorPane fx:id="lab" prefHeight="617.2" prefWidth="1114.0" style="-fx-background-color: #14162b;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="399.0" fitWidth="457.0" layoutX="104.0" layoutY="-122.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Black_And_White_Aesthetic_Minimalist_Modern_Simple_Typography_Coconut_Cosmetics_Logo_1.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="80.0" layoutY="199.0" prefHeight="32.0" prefWidth="168.0" style="-fx-text-fill: #cfd0d4;" text="Username:" textFill="#354d2c" wrapText="true">
+               <font>
+                  <Font name="Impact" size="28.0" />
+               </font>
+            </Label>
+            <TextField fx:id="user" layoutX="269.0" layoutY="199.0" prefHeight="34.0" prefWidth="314.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #14162b transparent; -fx-border-width: 0 0 1 0; -fx-text-fill: white;">
+               <font>
+                  <Font size="21.0" />
+               </font></TextField>
+            <Label alignment="CENTER" layoutX="96.0" layoutY="283.0" prefHeight="34.0" prefWidth="136.0" style="-fx-text-fill: #dddddd;" text="Password:" textFill="#dbdbdb" wrapText="true">
+               <font>
+                  <Font name="Impact" size="29.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="pass" layoutX="269.0" layoutY="277.0" prefHeight="34.0" prefWidth="314.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #14162b transparent; -fx-border-width: 0 0 1 0; -fx-text-fill: white;">
+               <font>
+                  <Font size="23.0" />
+               </font></PasswordField>
+            <Button fx:id="bt" layoutX="300.0" layoutY="397.0" mnemonicParsing="false" onAction="#log" prefHeight="34.0" prefWidth="178.0" style="-fx-background-color: #4764f5;" text="Login" />
+            <Label fx:id="fail" alignment="CENTER" layoutX="215.0" layoutY="353.0" prefHeight="34.0" prefWidth="376.0" text="username or password are incorrect" textFill="#cba3a3">
+               <font>
+                  <Font name="Impact" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="625.0" fitWidth="532.0" layoutX="606.0" opacity="0.5" pickOnBounds="true">
+               <image>
+                  <Image url="@WhatsApp%20Image%202023-12-21%20at%2019.31.57_423d66c9.jpg" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <Hyperlink fx:id="switchToRegister" layoutX="300.0" layoutY="431.0" onAction="#log" prefHeight="34.0" prefWidth="178.0" text="Don't have account?  Register" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="admin" layoutX="5.0" layoutY="-5.0" prefHeight="625.2" prefWidth="1143.0" style="-fx-background-color: #14162b;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="362.0" fitWidth="384.0" layoutX="-22.0" layoutY="-105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Black_And_White_Aesthetic_Minimalist_Modern_Simple_Typography_Coconut_Cosmetics_Logo_1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

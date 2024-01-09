@@ -1,0 +1,14 @@
+#reservationTable .table-column {
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-border-color:   #14162b;
+    -fx-font-family: "impact", serif;
+}
+.table-view {
+    -fx-border-color:  #14162b;
+}
+
+
+.table-row-cell {
+    -fx-border-color:  #14162b;
+}

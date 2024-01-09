@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="label" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: #14162b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.co_working_space1.Users">
+   <children>
+      <ImageView fitHeight="504.0" fitWidth="441.0" layoutX="106.0" layoutY="-118.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Black_And_White_Aesthetic_Minimalist_Modern_Simple_Typography_Coconut_Cosmetics_Logo_1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="signup" layoutX="323.0" layoutY="471.0" mnemonicParsing="false" onAction="#reg" prefHeight="34.0" prefWidth="185.0" style="-fx-background-color: #4764f5;" text="Sign Up" />
+      <Label alignment="CENTER" layoutX="66.0" layoutY="188.0" prefHeight="55.0" prefWidth="164.0" text="Username:" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="newuser" layoutX="258.0" layoutY="203.0" prefHeight="25.0" prefWidth="315.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-border-width: 0 0 1 0;">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <Label alignment="CENTER" layoutX="66.0" layoutY="276.0" prefHeight="55.0" prefWidth="164.0" text="Password:" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="29.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="newPassword" layoutX="258.0" layoutY="291.0" prefHeight="25.0" prefWidth="315.0" style="-fx-background-color: transparent transparent white transparent; -fx-border-color: transparent transparent white transparent; -fx-border-width: 0 0 1 0;">
+         <font>
+            <Font size="18.0" />
+         </font></PasswordField>
+      <ChoiceBox fx:id="type" layoutX="258.0" layoutY="382.0" onDragDetected="#reg" prefHeight="25.0" prefWidth="315.0" style="-fx-background-color: transparent; -fx-border-color: transparent transparent white transparent; -fx-border-width: 0 0 1 0;" />
+      <Label alignment="CENTER" layoutX="66.0" layoutY="368.0" prefHeight="55.0" prefWidth="156.0" text="Type:" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="fail" layoutX="22.0" layoutY="48.0" prefHeight="17.0" prefWidth="504.0" />
+      <ImageView fitHeight="635.0" fitWidth="597.0" layoutX="616.0" opacity="0.5" pickOnBounds="true">
+         <image>
+            <Image url="@WhatsApp%20Image%202023-12-21%20at%2019.31.57_423d66c9.jpg" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <Hyperlink fx:id="switchToLogin" layoutX="323.0" layoutY="505.0" onAction="#reg" prefHeight="34.0" prefWidth="178.0" text="Have An Account?  Login" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+      </Hyperlink>
+      <Label fx:id="regText" alignment="CENTER" layoutX="283.0" layoutY="434.0" prefHeight="30.0" prefWidth="331.0" text="This Username is Not Available" textFill="#cba3a3" visible="false">
+         <font>
+            <Font name="Impact" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -274,6 +274,7 @@ public class Users implements Initializable {
                             usrData = FileManagment.usrData;
                             visData = FXCollections.observableArrayList(usrData);
                             visitorsData.setItems(visData);
+                            ReservationsData.refresh();
                         }
                     }
                     catch(Exception exception)

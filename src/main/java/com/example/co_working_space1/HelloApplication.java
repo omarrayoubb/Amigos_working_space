@@ -52,7 +52,6 @@ public class HelloApplication extends Application {
         {
             System.out.println(s.getDate() + " " + s.getTime() + " " + s.getRoom_type());
         }
-
 */
         FileManagment.ReadUsers();
         launch();

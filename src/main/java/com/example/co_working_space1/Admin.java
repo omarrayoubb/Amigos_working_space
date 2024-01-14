@@ -3,6 +3,7 @@ package com.example.co_working_space1;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Admin extends Person {
     public Admin() {
@@ -29,41 +30,77 @@ public class Admin extends Person {
     public boolean deleteUser(int id) {
         boolean x = false;
         Visitor Name = new Visitor();
-        for (Visitor s : FileManagment.usrData) {
-            if (s.getId() == id) {
+        ArrayList<Reservation> resData = new ArrayList<>(FileManagment.Reservations);
 
+        Iterator<Visitor> usrIterator = FileManagment.usrData.iterator();
+        while (usrIterator.hasNext()) {
+            Visitor s = usrIterator.next();
+            if (s.getId() == id) {
                 x = true;
                 Name = s;
-                FileManagment.usrData.remove(s);
+                usrIterator.remove();
                 break;
             }
         }
-        for (Reservation s : FileManagment.Reservations) {
-            if (Name.getUsername().equalsIgnoreCase(s.getVisitorName()) && s.getDate().compareTo(LocalDate.now()) >= 0) {
-                Name.deleteReservation(s.getDate(), s.getTime());
-                return x;
+
+        for (Reservation m : resData) {
+            if (Name.getUsername().equalsIgnoreCase(m.getVisitorName()) && m.getDate().compareTo(LocalDate.now()) >= 0) {
+                for (room s : FileManagment.roooms) {
+                    if (s.getId() == m.getRoom_id()) {
+                        Iterator<Slott> slotIterator = s.slots.iterator();
+                        while (slotIterator.hasNext()) {
+                            Slott r = slotIterator.next();
+                            if (m.getDate().equals(r.getDate()) && m.getTime().equals(r.getTime())) {
+                                if (!r.getAvailability()) {
+                                    s.openRoom(s.getName(), m.getDate(), m.getTime());
+                                }
+                                r.setSlotsCounter(r.getSlotsCounter() + 1);
+
+                                Iterator<Reservation> reservationIterator = FileManagment.Reservations.iterator();
+                                while (reservationIterator.hasNext()) {
+                                    Reservation reservation = reservationIterator.next();
+                                    if (reservation.equals(m)) {
+                                        reservationIterator.remove();
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
             }
         }
+
         return x;
     }
 
+
+
     public boolean deleteRoom(int id) {
         boolean deleted = false;
-        for (room s : FileManagment.roooms) {
+
+        Iterator<room> roomIterator = FileManagment.roooms.iterator();
+        while (roomIterator.hasNext()) {
+            room s = roomIterator.next();
             if (s.getId() == id) {
-                FileManagment.roooms.remove(s);
+                roomIterator.remove();
                 deleted = true;
                 break;
+            }
+        }
 
-            }
-        }
-        for (Reservation s : FileManagment.Reservations) {
+        Iterator<Reservation> reservationIterator = FileManagment.Reservations.iterator();
+        while (reservationIterator.hasNext()) {
+            Reservation s = reservationIterator.next();
             if (s.getRoom_id() == id) {
-                FileManagment.Reservations.remove(s);
+                reservationIterator.remove();
             }
         }
+
         return deleted;
     }
+
 
     public boolean deleteReservation(LocalDate date, LocalTime time, int roomId) {
         boolean deleted = false;
@@ -93,6 +130,8 @@ public class Admin extends Person {
     public boolean EditUser(String edit, String field, int id)
     {
         boolean deleted = false;
+        boolean userName = false;
+        String username = new String();
         for (Visitor v: FileManagment.usrData)
         {
             if (v.getId() == id)
@@ -104,8 +143,10 @@ public class Admin extends Person {
                 }
                 else if(field.equalsIgnoreCase("Username"))
                 {
+                    username = v.getUsername();
                     v.setUsername(edit);
                     deleted = true;
+                    userName = true;
                 }
                 else if (field.equalsIgnoreCase("type"))
                 {
@@ -113,7 +154,18 @@ public class Admin extends Person {
                     deleted = true;
                 }
             }
+            if (userName)
+            {
+                for (Reservation s: FileManagment.Reservations)
+                {
+                    if (s.getVisitorName().equalsIgnoreCase(username))
+                    {
+                        s.setVisitorName(edit);
+                    }
+                }
+            }
         }
+
         return deleted;
     }
 }

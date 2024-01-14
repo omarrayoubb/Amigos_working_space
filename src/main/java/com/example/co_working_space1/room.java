@@ -9,10 +9,18 @@ public class room implements Serializable {
         protected String name;
         protected int id;
         protected int numberofvistors;
-        public ArrayList<Slott> slots;
-        protected ArrayList<String> listOfVisitors;
+        protected ArrayList<Slott> slots;
+        protected double fees;
 
-        public room(int id, ArrayList<Slott> slots) {
+    public ArrayList<Slott> getSlots() {
+        return slots;
+    }
+
+    public void setSlots(ArrayList<Slott> slots) {
+        this.slots = slots;
+    }
+
+    public room(int id, ArrayList<Slott> slots) {
             this.id = id;
             this.slots = slots;
         }
@@ -52,15 +60,6 @@ public class room implements Serializable {
             return numberofvistors;
         }
 
-        public room(ArrayList<String> listOfVisitors) {
-            this.listOfVisitors = listOfVisitors;
-        }
-
-
-        public  double calculateFees()
-        {
-            return 0.0;
-        }
         public boolean checkForComplete(String type, LocalDate date, LocalTime time) {
             boolean checkAvailability = false;
             for (room r : FileManagment.roooms) {
@@ -93,12 +92,29 @@ public class room implements Serializable {
                 }
             }
         }
+        public void openRoom(String type, LocalDate date, LocalTime time)
+        {
+            for (room r : FileManagment.roooms) {
+                if (type.equalsIgnoreCase(r.getName())) {
+                    for (Slott s : r.slots) {
+                        if (s.getDate().equals(date) && s.getTime().equals(time))
+                        {
+                            s.setAvailability(true);
+                        }
+                    }
+                }
+            }
+        }
         public boolean checkNumberOfVisitors(int numberOfVisitors)
         {
-            if (numberOfVisitors < 10)
+            if (numberOfVisitors <= 10)
                 return true;
             else
                 return false;
+        }
+        public boolean checkAvailability(LocalDate date, LocalTime time)
+        {
+            return true;
         }
     }
 

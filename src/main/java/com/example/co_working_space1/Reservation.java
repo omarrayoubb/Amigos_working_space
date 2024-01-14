@@ -5,14 +5,24 @@ import java.security.GeneralSecurityException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class Reservation implements Serializable {
+public class Reservation implements Serializable, Comparable {
     private LocalDate Date;
     private LocalTime Time;
 
     private String visitorName;
     private String Room_type;
     private int room_id = 0;
+    private double fees;
+
+    public double getFees() {
+        return fees;
+    }
+
+    public void setFees(double fees) {
+        this.fees = fees;
+    }
 
     public void setRoom_id(int room_id) {
         this.room_id = room_id;
@@ -89,10 +99,7 @@ public class Reservation implements Serializable {
         else {
             room = new GeneralRoom();
 
-            if (room instanceof GeneralRoom)
-            {
-                return (GeneralRoom) room;
-            }
+            return (GeneralRoom) room;
 
         }
         return null;
@@ -104,14 +111,16 @@ public class Reservation implements Serializable {
         System.out.println(room_id);
         System.out.println(Date);
         System.out.println(Time);
+        System.out.println(fees);
     }
 
 
     public int teachingRoomReservation(room r12) {
         TeachingRoom r2 = (TeachingRoom) r12;
         boolean checkAvailability = r2.checkAvailability(Date, Time);
-        if (checkAvailability == true) {
+        if (checkAvailability) {
             room_id = r2.id;
+            fees = r2.fees;
             System.out.println("Successful Reservation");
             return 0;
         }
@@ -122,8 +131,9 @@ public class Reservation implements Serializable {
 
     public int meetingRoomReservation(room r1) {
         MeetingRoom m1 = (MeetingRoom) r1;
-        if (m1.bookSlot(Date, Time)) {
+        if (m1.checkAvailability(Date, Time)) {
             room_id = m1.id;
+            fees = m1.fees;
             System.out.println("Successful Reservation");
             return 0;
         }
@@ -135,6 +145,7 @@ public class Reservation implements Serializable {
         GeneralRoom m1 = (GeneralRoom) r1;
         if (m1.checkAvailability(Date, Time)) {
             room_id = m1.id;
+            fees = m1.fees;
             System.out.println("Successful Reservation");
             return 0;
         }
@@ -177,5 +188,27 @@ public class Reservation implements Serializable {
             }
         }
         return reservationData;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Reservation obj = (Reservation) o;
+        if (this.getDate().isBefore(obj.getDate()))
+            return -1;
+        else if (this.getDate().isAfter(obj.getDate()))
+            return 1;
+        else
+        {
+            if (this.getTime().isBefore(obj.getTime()))
+            {
+                return -1;
+            }
+            else if (this.getTime().isAfter(obj.getTime()))
+            {
+                return 1;
+            }
+            else
+                return 0;
+        }
     }
 }

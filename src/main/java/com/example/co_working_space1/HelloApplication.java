@@ -28,8 +28,8 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
 /*
-        Visitor v = new Visitor("Omar", "20102003Omar", "Formal");
-        ArrayList<Visitor> usrData = new ArrayList<Visitor>();
+       Visitor v = new Visitor("Omar", "20102003Omar", "Formal");
+       ArrayList<Visitor> usrData = new ArrayList<Visitor>();
         usrData.add(v);
         FileManagment.WriteUsers();
 
@@ -37,8 +37,9 @@ public class HelloApplication extends Application {
         FileManagment.Reservations.add(reserve);
         FileManagment.arrayDeclaration();
         FileManagment.WriteUsers();
-*/
-        FileManagment.ReadUsers();
+
+
+
         for (Visitor s : FileManagment.usrData)
         {
             System.out.println(s.getUsername() + " " + s.getPassword() + " " + s.getType());
@@ -52,7 +53,8 @@ public class HelloApplication extends Application {
             System.out.println(s.getDate() + " " + s.getTime() + " " + s.getRoom_type());
         }
 
-
+*/
+        FileManagment.ReadUsers();
         launch();
         FileManagment.WriteUsers();
 

@@ -1,17 +1,16 @@
 package com.example.co_working_space1;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
-public abstract class person implements Serializable {
-    private String username;
-    private String password;
+public abstract class Person implements Serializable {
+    protected String username;
+    protected String password;
 
-    person()
+    Person()
     {
 
     }
-    public person(String username, String password) {
+    public Person(String username, String password) {
         this.username = username;
         this.password = password;
     }

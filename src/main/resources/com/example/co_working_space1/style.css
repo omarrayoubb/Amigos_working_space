@@ -12,3 +12,16 @@
 .table-row-cell {
     -fx-border-color:  #14162b;
 }
+#visitorsData .table-column {
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-border-color:   #14162b;
+    -fx-font-family: "impact", serif;
+}
+   .table-column {
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-border-color:   #14162b;
+    -fx-font-family: "impact", serif;
+}
+

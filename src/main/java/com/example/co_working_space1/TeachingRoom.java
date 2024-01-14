@@ -5,9 +5,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class TeachingRoom extends room {
-    protected String projector_type;
-    protected String board_type;
-    protected String instructor_name;
 
 
     public TeachingRoom() {
@@ -28,8 +25,9 @@ public class TeachingRoom extends room {
                     if (date.equals(m.Date)) {
                         if (time.equals(m.getTime())) {
                             if (m.getSlotsCounter() > 0 && m.getAvailability()) {
-                                m.setSlotsCounter(m.getSlotsCounter() - 1);
+                                m.setSlotsCounter(0);
                                 this.id = s.getId();
+                                this.fees = m.getFees();
                                 if (!checkForComplete(s.getName(), date, time))
                                 {
                                     changeAvailability(s.getName(), date, time);

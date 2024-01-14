@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * DailyWorkspaceInfo about our opening and closing Times
+ */
 public class DailyWorkspaceInfo {
     // DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EE dd/HH/yyyy");
     public static LocalTime OpeningHour=LocalTime.parse("10:00");

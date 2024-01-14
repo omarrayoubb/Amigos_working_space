@@ -3,9 +3,13 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class FileManagment {
-    public static ArrayList<Visitor> usrData = new ArrayList<Visitor>();
-    public static ArrayList<room> roooms = new ArrayList<room>();
-    public static ArrayList<Reservation> Reservations = new ArrayList<Reservation>();
+    public static ArrayList<Visitor> usrData = new ArrayList<Visitor>(); //array of users data
+    public static ArrayList<room> roooms = new ArrayList<room>(); // array of rooms data
+    public static ArrayList<Reservation> Reservations = new ArrayList<Reservation>(); // array of reservations data
+
+    /**
+     * ReadUsers - read the data from file and save it to arraylists
+     */
     public static ArrayList<Visitor> ReadUsers()
     {
         try
@@ -38,8 +42,17 @@ public class FileManagment {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * WriteUsers provide that after finishing the program write from arraylists to files
+     */
     public static  void WriteUsers() {
         try {
+            /*
+                this open file stream to send the data through
+                data pass as binaries to save it as objects so we open object output stream to convert it from binary and to
+                these classes that save implements the interface serializable;
+             */
             FileOutputStream fileUsr = new FileOutputStream("Users.txt");
             ObjectOutputStream objUsr = new ObjectOutputStream(fileUsr);
             objUsr.writeObject(usrData);
@@ -66,14 +79,18 @@ public class FileManagment {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * arrayDecelaration method initialize our 8 rooms data for the first time to save it 3la madar shahr
+     */
     public static void arrayDeclaration()
     {
-        ArrayList<Slott> s1 = Slott.CreateListOfSlots(20, 100F);
-        ArrayList<Slott> s2 = Slott.CreateListOfSlots(20, 100F);
-        ArrayList<Slott> s3 = Slott.CreateListOfSlots(1, 100F);
-        ArrayList<Slott> s4 = Slott.CreateListOfSlots(1, 100);
+        ArrayList<Slott> s1 = Slott.CreateListOfSlots(20, 20F);
+        ArrayList<Slott> s2 = Slott.CreateListOfSlots(20, 20F);
+        ArrayList<Slott> s3 = Slott.CreateListOfSlots(1, 80F);
+        ArrayList<Slott> s4 = Slott.CreateListOfSlots(1, 80);
 
-        ArrayList<Slott> s5 = Slott.CreateListOfSlots(1, 100);
+        ArrayList<Slott> s5 = Slott.CreateListOfSlots(1, 80);
         ArrayList<Slott> s6 = Slott.CreateListOfSlots(1, 100);
         ArrayList<Slott> s7 = Slott.CreateListOfSlots(1, 100);
         ArrayList<Slott> s8 = Slott.CreateListOfSlots(1, 100);

@@ -1,14 +1,9 @@
 package com.example.co_working_space1;
 
-import java.io.File;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Scanner;
 
-public class Visitor extends person {
+public class Visitor extends Person {
     private String type;
     private int id;
 
@@ -96,7 +91,6 @@ public class Visitor extends person {
         boolean x = false, y = false, z = false, checkPasswordd = false;
 
         if (Password.length() <= 6) {
-            System.out.println("Please write a strong password");
             return checkPasswordd;
         }
         // check = 0;
@@ -142,7 +136,6 @@ public class Visitor extends person {
 
     public int makeReservation(String room_type, LocalDate date, int timee, int numberOfVisitors) {
         int check = 0;
-        int count = 0;
         LocalTime time = LocalTime.MIN;
         room r1 = new room();
         Reservation reserve = new Reservation();
@@ -155,6 +148,10 @@ public class Visitor extends person {
             reserve.setRoom_type(room_type);
             reserve.setTime(time);
             r1 = reserve.setRoom(r1);
+            if (!CheckTime(date, time))
+            {
+                return -1;
+            }
             if (!r1.checkNumberOfVisitors(numberOfVisitors))
             {
                 return -4;
@@ -172,7 +169,6 @@ public class Visitor extends person {
 
             if (check == 0) {
                 FileManagment.Reservations.add(reserve);
-                count++;
                 reserve.display();
             }
         return 0;
@@ -189,14 +185,16 @@ public class Visitor extends person {
             }
         }
         for (room s : FileManagment.roooms) {
-            if (s.getName().equalsIgnoreCase(type)) {
+            if (s.getId() == id && type.equalsIgnoreCase(s.getName())) {
                 for (Slott m : s.slots) {
                     if (m.getDate().equals(date) && m.getTime().equals(time)) {
                         if (!m.getAvailability()) {
-                            m.setAvailability(true);
+                            s.openRoom(s.getName(), date, time);
                         }
+                        m.setSlotsCounter(m.getSlotsCounter() + 1);
+                        break;
                     }
-                    m.setSlotsCounter(m.getSlotsCounter() + 1);
+
                 }
             }
         }
@@ -213,8 +211,8 @@ public class Visitor extends person {
         }
 
     }
-    public static boolean CheckTime(LocalTime time) {
-        if (time.compareTo(LocalTime.now()) < 0) {
+    public static boolean CheckTime(LocalDate date,LocalTime time) {
+        if (time.compareTo(LocalTime.now()) < 0 && LocalDate.now().equals(date)) {
             return false;
         } else {
             return true;

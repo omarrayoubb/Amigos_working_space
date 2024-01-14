@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="617.0" prefWidth="1114.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.co_working_space1.Users">
+<AnchorPane maxHeight="647.0" maxWidth="1093.0" prefHeight="647.0" prefWidth="1093.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.co_working_space1.Users">
    <children>
-      <AnchorPane fx:id="lab" prefHeight="617.2" prefWidth="1114.0" style="-fx-background-color: #14162b;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="lab" layoutX="7.0" prefHeight="647.2" prefWidth="1320.0" style="-fx-background-color: #14162b;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="399.0" fitWidth="457.0" layoutX="104.0" layoutY="-122.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,7 +48,7 @@
                   <Font name="Impact" size="16.0" />
                </font>
             </Label>
-            <ImageView fitHeight="625.0" fitWidth="532.0" layoutX="606.0" opacity="0.5" pickOnBounds="true">
+            <ImageView fitHeight="637.0" fitWidth="532.0" layoutX="606.0" opacity="0.5" pickOnBounds="true">
                <image>
                   <Image url="@WhatsApp%20Image%202023-12-21%20at%2019.31.57_423d66c9.jpg" />
                </image>
@@ -59,13 +63,82 @@
             </Hyperlink>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="admin" layoutX="5.0" layoutY="-5.0" prefHeight="625.2" prefWidth="1143.0" style="-fx-background-color: #14162b;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="admin" layoutX="5.0" layoutY="-5.0" prefHeight="600.0" prefWidth="1050.0" style="-fx-background-color: #14162b;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <stylesheets>
+            <URL value="@style.css" />
+         </stylesheets>
          <children>
-            <ImageView fitHeight="362.0" fitWidth="384.0" layoutX="-22.0" layoutY="-105.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Black_And_White_Aesthetic_Minimalist_Modern_Simple_Typography_Coconut_Cosmetics_Logo_1.png" />
-               </image>
-            </ImageView>
+            <AnchorPane fx:id="visPage" layoutX="170.0" layoutY="143.0" prefHeight="637.0" prefWidth="1143.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="visitorsData" layoutX="173.0" layoutY="158.0" prefHeight="464.0" prefWidth="970.0" style="-fx-background-color: #14162b;">
+                    <columns>
+                      <TableColumn fx:id="id" prefWidth="75.0" style="-fx-background-color: #14162b;" text="ID" />
+                      <TableColumn fx:id="usernamme" prefWidth="183.20001220703125" style="-fx-background-color: #14162b;" text="Username" />
+                        <TableColumn fx:id="passwordd" prefWidth="206.40005493164062" style="-fx-background-color: #14162b;" text="Password" />
+                        <TableColumn fx:id="adminType" prefWidth="206.40005493164062" style="-fx-background-color: #14162b;" text="Type" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <Button fx:id="insData" layoutX="500.0" layoutY="61.0" mnemonicParsing="false" onAction="#showVisitorsData" prefHeight="49.0" prefWidth="196.0" style="-fx-background-color: #4764f5;" text="Display Instructors Data" />
+                  <Button fx:id="DeleteUser" layoutX="259.0" layoutY="61.0" mnemonicParsing="false" onAction="#showVisitorsData" prefHeight="49.0" prefWidth="196.0" style="-fx-background-color: #4764f5;" text="Delete User" />
+                  <TextField fx:id="editField" layoutX="916.0" layoutY="69.0" prefHeight="34.0" prefWidth="196.0">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="editData" layoutX="729.0" layoutY="61.0" mnemonicParsing="false" onAction="#showVisitorsData" prefHeight="49.0" prefWidth="170.0" style="-fx-background-color: #4764f5;" text="Edit User" />
+                  <ChoiceBox fx:id="editVisitorOptions" layoutX="730.0" layoutY="122.0" prefWidth="150.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="roomPage" layoutX="173.0" prefHeight="637.0" prefWidth="970.0" visible="false">
+               <children>
+                  <TableView fx:id="roomDataa" layoutY="159.0" prefHeight="464.0" prefWidth="887.0" style="-fx-background-color: #14162b;">
+                     <columns>
+                        <TableColumn fx:id="name" prefWidth="202.00003051757812" style="-fx-background-color: #14162b;" text="Name" />
+                        <TableColumn fx:id="id2" minWidth="7.199951171875" prefWidth="221.19998168945312" style="-fx-background-color: #14162b;" text="Id" />
+                        <TableColumn fx:id="numberOfVis" prefWidth="191.60003662109375" style="-fx-background-color: #14162b;" text="Number of Visitors" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <Button fx:id="deleteRooms" layoutX="387.0" layoutY="74.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="196.0" style="-fx-background-color: #4764f5;" text="Delete Room" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="resPage" layoutX="170.0" layoutY="10.0" prefHeight="647.0" prefWidth="1045.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="ReservationsData" layoutX="173.0" layoutY="165.2" prefHeight="482.0" prefWidth="973.0" style="-fx-background-color: #14162b;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="165.0">
+                     <columns>
+                        <TableColumn fx:id="id1" prefWidth="75.0" style="-fx-background-color: #14162b;" text="ID" />
+                        <TableColumn fx:id="userName" prefWidth="206.0" style="-fx-background-color: #14162b;" text="Username" />
+                        <TableColumn fx:id="roomTypee" prefWidth="219.99996948242188" style="-fx-background-color: #14162b;" text="Room Type" />
+                        <TableColumn fx:id="reservationDate" prefWidth="261.20001220703125" style="-fx-background-color: #14162b;" text="Date" />
+                        <TableColumn fx:id="reservationTime" prefWidth="113.199951171875" style="-fx-background-color: #14162b;" text="Time" />
+                        <TableColumn fx:id="reservationFees" prefWidth="304.800048828125" style="-fx-background-color: #14162b;" text="Fees" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <Button fx:id="DeleteReservation" layoutX="388.0" layoutY="75.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="196.0" style="-fx-background-color: #4764f5;" text="Delete Reservation" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="637.0" prefWidth="162.0" style="-fx-border-color: transparent white transparent transparent;">
+
+                     <children>
+                  <ImageView fitHeight="333.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Black_And_White_Aesthetic_Minimalist_Modern_Simple_Typography_Coconut_Cosmetics_Logo_1.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="users" layoutX="19.0" layoutY="190.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #4764f5;" text="Users" />
+                  <Button fx:id="roomm" layoutX="19.0" layoutY="305.0" mnemonicParsing="false" onAction="#showRoomData" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #4764f5;" text="Rooms" />
+                  <Button fx:id="reservationns" layoutX="19.0" layoutY="416.0" mnemonicParsing="false" onAction="#reservationController" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #4764f5;" text="Reservations" />
+                  <Button fx:id="logout" layoutX="17.0" layoutY="514.0" mnemonicParsing="false" onAction="#LogOut" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #4764f5;" text="Log out" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

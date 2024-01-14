@@ -23,8 +23,10 @@ import javafx.util.Duration;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ReservationGU {
@@ -55,6 +57,7 @@ public class ReservationGU {
     public Button myReservations_id;
     public Button myReservations_id1;
     public Label nov;
+    public TableColumn resPrice;
     int numberOfVisitors;
     int timeInNumbers;
     public TextField numberofVisitors;
@@ -85,6 +88,7 @@ public class ReservationGU {
     LocalDate dateee;
     ArrayList<String> timeInString;
     ObservableList<Reservation> reservation;
+    int makeReservation;
 
 
     @FXML
@@ -108,7 +112,7 @@ public class ReservationGU {
         timeInString = new ArrayList<>();
         Time = new ListView();
         reservation = FXCollections.observableArrayList();
-
+        makeReservation = 0;
 
     }
 
@@ -148,6 +152,8 @@ public class ReservationGU {
 
         } else if (img == image2) {
             Room_type = "Teaching Room";
+            nov.setVisible(true);
+            numberofVisitors.setVisible(true);
         } else {
             Room_type = "Meeting Room";
             nov.setVisible(true);
@@ -196,6 +202,13 @@ public class ReservationGU {
     }
 
     public void makeReservation(ActionEvent event) {
+        /*
+            this part get the available slot for the user to show it in a list
+            take availableslots from reservation function
+            convert it to string
+            convert arrayof strings to a observable list to show it in a list and show it
+            if the date is correct and valid
+         */
         if (event.getSource() == datee) {
 
             dateee = datee.getValue();
@@ -217,10 +230,18 @@ public class ReservationGU {
                 availableTime.getChildren().addAll(Time);
 
                 Time.setOnMouseClicked(e -> {
-                    String TimeSelected = (String) Time.getSelectionModel().getSelectedItem();
-                    TimeSelected = TimeSelected.substring(0, 2);
-                    timeInNumbers = Integer.parseInt(TimeSelected);
-                });
+                    try {
+                        String TimeSelected = (String) Time.getSelectionModel().getSelectedItem();
+                        TimeSelected = TimeSelected.substring(0, 2);
+                        timeInNumbers = Integer.parseInt(TimeSelected);
+                    }
+                    catch (Exception exception)
+                    {
+                        error2.setText("Please Choose A number");
+                        error2.setVisible(true);
+
+                    }
+                    });
                 availableTime.setVisible(true);
 
             } else {
@@ -237,7 +258,8 @@ public class ReservationGU {
                     numberOfVisitors = 1;
                 else
                     numberOfVisitors = Integer.parseInt(numberofVisitors.getText());
-                if (Users.vs.makeReservation(Room_type, dateee, timeInNumbers, numberOfVisitors) == 0) {
+                makeReservation = Users.vs.makeReservation(Room_type, dateee, timeInNumbers, numberOfVisitors);
+                if (makeReservation == 0) {
                     System.out.println("Reservation great");
                     if (event.getSource() == confirm) {
                         clearRevPage();
@@ -245,8 +267,24 @@ public class ReservationGU {
                         myReservations();
                         reservationPage.setVisible(true);
                     }
-                } else {
+                    else if (event.getSource() == addSlot)
+                    {
+                        error2.setText("Slot has added successfully");
+                        error2.setVisible(true);
+                    }
+                } else if (makeReservation == -4){
+                    error2.setText("Number of Visitors is less than 10");
+                    error2.setVisible(true);
                     System.out.println("No reservation are done");
+                }
+                else if (makeReservation == -2)
+                {
+                    error2.setText("You had Reserved this slot");
+                    error2.setVisible(true);
+                }
+                else {
+                    error2.setVisible(true);
+                    error2.setText("Please Enter time after " + " " + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
                 }
             }
             catch (Exception exception)
@@ -264,6 +302,7 @@ public class ReservationGU {
      */
     public void myReservations() {
         ArrayList<Reservation> r = reserve.UserReservations(Users.vs.getUsername());
+        Collections.sort(r);
         reservation = FXCollections.observableArrayList(r);
         reservationTable.setItems(reservation);
 
@@ -271,6 +310,7 @@ public class ReservationGU {
         resID.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("room_id"));
         resTime.setCellValueFactory(new PropertyValueFactory<Reservation, LocalTime>("Time"));
         resType.setCellValueFactory(new PropertyValueFactory<Reservation, String>("Room_type"));
+        resPrice.setCellValueFactory(new PropertyValueFactory<Reservation, Double>("Fees"));
         reservationTable.refresh();
         System.out.println(reservation.size());
     }
@@ -334,6 +374,7 @@ public class ReservationGU {
             availableTime.getChildren().clear();
             availableTime.setVisible(false);
             error2.setVisible(false);
+            numberofVisitors.clear();
         }
         public void editReservation(ActionEvent event) {
             reserve = new Reservation();

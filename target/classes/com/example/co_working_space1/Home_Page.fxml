@@ -102,12 +102,13 @@
          </stylesheets>
 
                            <children>
-            <TableView fx:id="reservationTable" editable="true" layoutX="6.0" layoutY="124.0" prefHeight="365.0" prefWidth="1022.0" style="-fx-background-color: #14162b;">
+            <TableView fx:id="reservationTable" editable="true" layoutX="9.0" layoutY="124.0" prefHeight="365.0" prefWidth="1029.0" style="-fx-background-color: #14162b;">
               <columns>
                 <TableColumn fx:id="resType" prefWidth="116.80002403259277" style="-fx-background-color: #14162b;" text="Room Type" />
                 <TableColumn fx:id="resID" prefWidth="36.4000244140625" style="-fx-background-color: #14162b;" text="id" />
-                  <TableColumn fx:id="resDate" prefWidth="131.60000610351562" style="-fx-background-color: #14162b;" text="date" />
-                  <TableColumn fx:id="resTime" minWidth="0.0" prefWidth="147.5999755859375" style="-fx-background-color: #14162b;" text="Time" />
+                  <TableColumn fx:id="resDate" prefWidth="332.4000244140625" style="-fx-background-color: #14162b;" text="date" />
+                  <TableColumn fx:id="resTime" minWidth="0.0" prefWidth="345.60003662109375" style="-fx-background-color: #14162b;" text="Time" />
+                  <TableColumn fx:id="resPrice" minWidth="0.0" prefWidth="120.0" style="-fx-background-color: #14162b;" text="Price" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -245,7 +246,7 @@
                   <Font name="Impact" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="error2" layoutX="239.0" layoutY="494.0" prefHeight="92.0" prefWidth="191.0" text="Choose A Valid Date" textFill="WHITE" visible="false">
+            <Label fx:id="error2" layoutX="186.0" layoutY="494.0" prefHeight="92.0" prefWidth="311.0" text="Choose A Valid Date" textFill="WHITE" visible="false">
                <font>
                   <Font name="Impact" size="22.0" />
                </font>

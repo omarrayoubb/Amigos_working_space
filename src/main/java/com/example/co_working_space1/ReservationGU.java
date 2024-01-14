@@ -383,6 +383,7 @@ public class ReservationGU {
                 reserve.setRoom_type(selectedItem.getRoom_type());
                 reserve.setDate(selectedItem.getDate());
                 reserve.setTime(selectedItem.getTime());
+                Room_type = reserve.getRoom_type();
 
                 if (event.getSource() == editRes) {
                     agreePage1.setVisible(true);
